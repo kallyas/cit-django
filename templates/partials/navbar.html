@@ -1,0 +1,39 @@
+<div class="wsmainfull menu clearfix">
+  <div class="wsmainwp clearfix">
+    <div class="desktoplogo">
+      <a href="#hero-1" class="logo-white">
+        {% load static %}
+        <img src={% static 'images/logo-01.png' %} alt="header-logo"/>
+      </a>
+    </div>
+    <nav class="wsmenu clearfix">
+      <div class="overlapblackbg"></div>
+      <ul class="wsmenu-list nav-orange-red-hover">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="/musicians">Musicians</a>
+        </li>
+        <li>
+          <a href="/albums">Albums</a>
+        </li>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        <li>
+         <a href="/profile"> Welcome, {{ user.username }}</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="/login">Login</a>
+        </li>
+        <li>
+          <a href="/register">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</div>

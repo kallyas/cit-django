@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+{% block title %} Create Album {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="hero-1-txt black-color wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
+                <h2 class="h2-md">Create Album</h2>
+            </div>
+            {% if errors %} 
+            <div class="alert alert-danger">
+                <ul>
+                {% for error in errors %}
+                    <li>Field {{ error }} is missing!</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <form action="/create_album/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="release_date">Release Date</label>
+                    <input type="date" class="form-control" name="release_date" placeholder="Enter release date">
+                </div>
+                <div class="form-group">
+                    <label for="artist">Select Musician</label>
+                    <select name="artist" class="form-control">
+                    {% for artist in artists %}
+                        <option value="{{ artist.id }}">{{ artist.first_name }} {{ artist.last_name }}</option>
+                    {% endfor %}
+                    </select>
+                <!-- profile image -->
+                <div class="form-group">
+                    <label for="cover_img">Cover Image</label>
+                    <input type="file" class="form-control" id="cover_img" name="cover_img" placeholder="Enter cover image">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-md btn-skyblue tra-black-hover submit mt-3" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

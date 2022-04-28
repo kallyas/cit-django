@@ -1,0 +1,64 @@
+{% extends 'base.html' %} 
+{% block title %} Albums {% endblock %} 
+{% block content %}
+<section
+  id="blog-page"
+  class="bg-snow wide-50 inner-page-hero blog-page-section division"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="section-title title-02 mb-85">
+          <h2 class="h2-xs">Trending Musicians Albums</h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-10 col-lg-8">
+              <div class="section-title title-02 mb-75">
+                  <a href="/create_album" class="btn btn-blue tra-blue-hover btn-primary btn-lg">Add Album</a>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="posts-wrapper">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="h5-lg posts-category">Latest Albums</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col gallery-items-list">
+          <div class="masonry-wrap grid-loaded" style="position: relative; height: 1269.92px">
+            <!-- loop through all albums -->
+            {% for album in albums %}
+            <div class="blog-3-post masonry-image" style="{{ album.render_width }}">
+              <div class="blog-post-img">
+                <div class="hover-overlay">
+                  <img
+                    class="img-fluid"
+                    src="{{ album.get_img_url }}"
+                    alt="blog-post-image"
+                  />
+                  <div class="item-overlay"></div>
+                </div>
+              </div>
+              <div class="blog-post-txt">
+                <p class="p-md post-tag">
+                  {{ album.artist }} &ensp;|&ensp;{{ album.release_date }}
+                </p>
+                <h5 class="h5-md">
+                  <a href="{{ album.get_absolute_url }}"> {{ album.name }} </a>
+                </h5>
+                <div class="post-meta">
+                  <p class="p-md">{{ album.num_stars }} Reviews</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

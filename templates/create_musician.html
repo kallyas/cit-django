@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+{% block title %}Create Musician{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-7 col-lg-6">
+                <div class="hero-1-txt black-color wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
+                    <h2 class="h2-md">Create Musician</h2>
+                </div>
+                {% if errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in errors %}
+                                <li>This {{ error }} field is required!</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <form action="/create_musician" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="first_name">first Name</label>
+                        <input type="text" class="form-control" name="first_name" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">last Name</label>
+                        <input type="text" class="form-control" name="last_name" placeholder="Enter last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="instrument">Instrument</label>
+                        <input type="text" class="form-control" id="instrument" name="instrument" placeholder="Enter instrument">
+                    </div>
+                    <!-- profile image -->
+                    <div class="form-group">
+                        <label for="profile_img">Profile Image</label>
+                        <input type="file" class="form-control" id="profile_img" name="profile_img" placeholder="Enter profile image">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-md btn-skyblue tra-black-hover submit mt-3" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

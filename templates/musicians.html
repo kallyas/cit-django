@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% block title %} Musicians {% endblock %} 
+{% block content %}
+<section id="team-1" class="wide-50 inner-page-hero team-section division">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="section-title title-02 mb-75">
+                    <h2 class="h2-xs">You've got passion. We've got space for you!</h2>
+                </div>
+                <!-- button to add musician -->
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="section-title title-02 mb-75">
+                            <a href="/create_musician" class="btn btn-blue tra-blue-hover btn-primary btn-lg">Add Musician</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="team-members-wrapper text-center">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+                {% for musician in musicians %}
+                <div class="col">
+                    <div class="team-member wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="team-member-photo">
+                            <img class="img-fluid" src="{{ musician.get_img_url }}" alt="{{ musician.first_name }}">
+                        </div>
+                        <div class="team-member-data">
+                            <h5 class="h5-sm">
+                                <a href="{{ musician.get_absolute_url }}">{{ musician.get_full_name }}</a>
+                            </h5>
+                            <p class="p-lg">{{ musician.instrument }} </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
